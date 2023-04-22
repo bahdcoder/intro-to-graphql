@@ -66,7 +66,11 @@ export function Root() {
     <DataContext.Provider value={data}>
       <div className="w-full h-screen flex flex-col">
         <div className="w-full flex items-center h-16 bg-white shadow-sm border-b">
-          <div className="w-1/5"></div>
+          <div className="w-1/5">
+            <div className="flex h-16 items-center pl-6">
+              <span className="font-bold text-lg">GraphQL</span>
+            </div>
+          </div>
           <div className="w-4/5">
             <div className="flex items-center space-x-4 h-16">
               <Link
