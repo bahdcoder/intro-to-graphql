@@ -37,7 +37,7 @@ export interface Person {
   socials: Socials
 }
 
-export function generatePeople(n: number = 50) {
+export function generatePeople(n = 50) {
   function generateWallet(): Wallet {
     return {
       bitcoin: faker.finance.bitcoinAddress(),
@@ -81,9 +81,11 @@ export function generatePeople(n: number = 50) {
       lastName: faker.name.lastName(),
       location: generateLocation(),
       socials: generateSocials(),
+      // eslint-disable-next-line
       wallets: Array.from(Array(3).keys()).map(_ => generateWallet()),
     }
   }
 
+  // eslint-disable-next-line
   return Array.from(Array(n).keys()).map(_ => generatePerson())
 }
