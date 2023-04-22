@@ -8,22 +8,22 @@ ENV HOME=/home/app
 
 # add app dependencies
 COPY package.json $HOME/node/
-COPY package-lock.json $HOME/node/
+COPY yarn.lock $HOME/node/
 
 # change workgin dir and install deps in quiet mode
 WORKDIR $HOME/node
-RUN npm ci -q
+RUN yarn install
 
 # copy all app files
 COPY . $HOME/node/
 
 # compile typescript and build all production stuff
-RUN npm run build
+RUN yarn run build
 
 # remove dev dependencies and files that are not needed in production
 RUN rm -rf node_modules
-RUN npm install --only=prod
-RUN npm prune --production
+RUN yarn install --only=prod
+RUN yarn prune --production
 
 # start new image for lower size
 FROM node:16-alpine
