@@ -3,8 +3,6 @@ import { QueryClient } from "react-query";
 
 export const queryClient = new QueryClient();
 
-console.log({ env: import.meta.env });
-
 export const client = Axios.create({
   baseURL: import.meta.env.VITE_API_URL,
 });

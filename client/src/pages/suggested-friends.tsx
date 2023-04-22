@@ -1,13 +1,7 @@
-import { useQuery } from "react-query";
-import { fetchSuggestedFriends } from "../utils/client";
-import { Person } from "../types";
+import { useData } from "../utils/data";
 
 export function SuggestedFriends() {
-  const { data: people = [] } = useQuery("suggested-friends", async () => {
-    const response = await fetchSuggestedFriends({ content: "suggestions" });
-
-    return response.data as Person[];
-  });
+  const { peopleYouMayKnow } = useData();
 
   return (
     <div className="w-full md:max-w-6xl md:mx-auto pt-6 md:pt-12 pb-12">
@@ -17,7 +11,7 @@ export function SuggestedFriends() {
         </h5>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {people.map((person) => (
+          {peopleYouMayKnow.map((person) => (
             <div key={person.id} className="bg-white rounded-lg px-4 py-6">
               <div className="flex flex-col items-center">
                 <img

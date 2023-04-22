@@ -1,17 +1,9 @@
 import cn from "classnames";
-import { useQuery } from "react-query";
-import { fetchSuggestedFriends } from "../utils/client";
-import { Person } from "../types";
+
+import { useData } from "../utils/data";
 
 export function Index() {
-  const { data: people = [] } = useQuery(
-    "suggested-friends-sidebar",
-    async () => {
-      const response = await fetchSuggestedFriends({ content: "sidebar" });
-
-      return response.data as Person[];
-    }
-  );
+  const { peopleYouMayKnowSidebar } = useData();
 
   return (
     <div className="w-full md:max-w-6xl md:mx-auto pt-6 md:pt-12 md:grid md:grid-cols-3 md:gap-6">
@@ -30,11 +22,11 @@ export function Index() {
 
         <div className="mt-4 bg-white shadow-sm rounded-lg p-4">
           <div className="flex flex-col">
-            {people.map((person, idx) => (
+            {peopleYouMayKnowSidebar.map((person, idx) => (
               <div
                 key={person.id}
                 className={cn("flex items-center justify-between py-2", {
-                  "border-b": idx !== people.length - 1,
+                  "border-b": idx !== peopleYouMayKnowSidebar.length - 1,
                 })}
               >
                 <div className="flex">
