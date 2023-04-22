@@ -23,7 +23,6 @@ RUN yarn run build
 # remove dev dependencies and files that are not needed in production
 RUN rm -rf node_modules
 RUN yarn install --only=prod
-RUN yarn prune --production
 
 # start new image for lower size
 FROM node:16-alpine
@@ -49,4 +48,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 ENTRYPOINT ["dumb-init"]
-CMD ["node", "--enable-source-maps", "build/index.js"]
+CMD ["node", "build/index.js"]
